@@ -10,16 +10,28 @@ import UIKit
 
 class FirstViewController: UIViewController {
 
+    @IBOutlet weak var itemLabel: UILabel!
+    @IBOutlet weak var amountLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.setLabels()
     }
 
-
+    private func setLabels() {
+        
+        let applicationTabBarController = tabBarController as! ApplicationTabBarController
+        let model = applicationTabBarController.model
+        let (item, amount) = model.getModel()
+        itemLabel.text = item
+        amountLabel.text = String(amount)
+        
+    }
 }
 
